@@ -9,6 +9,8 @@ namespace TwitterTraffic.Bots.BootsCorner
 {
 	public class BootsCorner : Bot
 	{
+		public override string ScreenName => "boots_corner";
+
 		private static SingleUserAuthorizer TwitterAuthToken = new SingleUserAuthorizer
 		{
 			CredentialStore = new SingleUserInMemoryCredentialStore

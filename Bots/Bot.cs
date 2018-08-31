@@ -10,6 +10,7 @@ namespace TwitterTraffic.Bots
 {
 	public abstract class Bot
 	{
+		public abstract string ScreenName { get; }
 		protected Twitter TwitterConnection;
 		protected TrafficChecks TrafficChecker;
 		protected Timers TweetTimer;
@@ -25,16 +26,16 @@ namespace TwitterTraffic.Bots
 			Console.WriteLine("************************************************************");
 
 			// Start up check to ensure last tweet isn't recent
-			if (TwitterConnection.CheckLastTweetNotRecent(TweetTimer, out SleepCounter))
+			if (TwitterConnection.CheckLastTweetNotRecent(TweetTimer, ScreenName, out SleepCounter))
 			{
-				Console.WriteLine("Sleeping until: {0}", Utils.GetLocalTime().AddSeconds(SleepCounter / 1000).ToString("dd/MM/yyyy HH:mm:ss"));
+				Console.WriteLine("{0} - Sleeping until: {1}", ScreenName, Utils.GetLocalTime().AddSeconds(SleepCounter / 1000).ToString("dd/MM/yyyy HH:mm:ss"));
 				Thread.Sleep(SleepCounter);
 			}
 #endif
 			while (true)
 			{
 				Console.WriteLine("************************************************************");
-				CurrentTime = new DateTime(2018, 08, 02, 09, 00, 00);
+				//CurrentTime = new DateTime(2018, 08, 02, 09, 00, 00);
 
 				// This deals with ensuring that we don't run during quiet housr
 				if (TweetTimer.CheckOutOfHours(CurrentTime, out SleepCounter))
@@ -78,7 +79,7 @@ namespace TwitterTraffic.Bots
 				}
 
 				// Finally, take a little nap
-				Console.WriteLine("Sleeping until: {0}", CurrentTime.AddSeconds(SleepCounter / 1000).ToString("dd/MM/yyyy HH:mm:ss"));
+				Console.WriteLine("{0} - Sleeping until: {1}", ScreenName, CurrentTime.AddSeconds(SleepCounter / 1000).ToString("dd/MM/yyyy HH:mm:ss"));
 				Thread.Sleep(SleepCounter);
 			}
 		}

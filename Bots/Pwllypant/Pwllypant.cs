@@ -9,6 +9,7 @@ namespace TwitterTraffic.Bots.Pwllypant
 {
 	public class Pwllypant : Bot
 	{
+		public override string ScreenName => "PwllypantRound";
 		private static SingleUserAuthorizer TwitterAuthToken = new SingleUserAuthorizer
 		{
 			CredentialStore = new SingleUserInMemoryCredentialStore

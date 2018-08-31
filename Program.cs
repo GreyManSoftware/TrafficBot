@@ -13,6 +13,7 @@ namespace TwitterTraffic
 	{
 		static void Main(string[] args)
 		{
+			Console.WriteLine("Starting Pwllypant Task");
 			Task pwllypantTask = Task.Run(() =>
 			{
 				Pwllypant pwllypant = new Pwllypant();
@@ -20,6 +21,7 @@ namespace TwitterTraffic
 
 			});
 
+			Console.WriteLine("Starting Boots Corner Task");
 			Task bootscornerTask = Task.Run(() =>
 			{
 				BootsCorner bootsCorner = new BootsCorner();

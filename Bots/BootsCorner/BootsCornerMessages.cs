@@ -70,5 +70,7 @@ namespace TwitterTraffic.Bots.BootsCorner
 			"It's like a scene from #TheWalkingDead",
 			"It might be time to consider moving to another country"
 		};
+
+		public override string HashTags => "#BootsCorner #Cheltenham #CBC #TrafficBot";
 	}
 }

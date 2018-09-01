@@ -34,8 +34,12 @@ namespace TwitterTraffic.Bots
 #endif
 			while (true)
 			{
+#if DEBUG
+				CurrentTime = new DateTime(2018, 08, 31, 09, 00, 00);
+#else
+				CurrentTime = Utils.GetLocalTime();
+#endif
 				Console.WriteLine("************************************************************");
-				//CurrentTime = new DateTime(2018, 08, 02, 09, 00, 00);
 
 				// This deals with ensuring that we don't run during quiet housr
 				if (TweetTimer.CheckOutOfHours(CurrentTime, out SleepCounter))
@@ -80,7 +84,12 @@ namespace TwitterTraffic.Bots
 
 				// Finally, take a little nap
 				Console.WriteLine("{0} - Sleeping until: {1}", ScreenName, CurrentTime.AddSeconds(SleepCounter / 1000).ToString("dd/MM/yyyy HH:mm:ss"));
+
+#if !DEBUG
 				Thread.Sleep(SleepCounter);
+#else
+				Thread.Sleep(1000);
+#endif
 			}
 		}
 

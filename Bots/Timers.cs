@@ -51,18 +51,17 @@ namespace TwitterTraffic.Bots
 				inTimeZone = true;
 				return 120 * 60 * 1000;
 			}
-			else
+
+			foreach (string timePeriodKey in TimerDictionary.Keys.Where(k => k != "WeekdayOutOfHours" && k != "WeekendOutOfHours"))
 			{
-				foreach (string timePeriodKey in TimerDictionary.Keys.Where(k => k != "WeekdayOutOfHours" && k != "WeekendOutOfHours"))
+				if (currentTime.CompareTo(TimerDictionary[timePeriodKey][0]) >= 0 &&
+				    currentTime.CompareTo(TimerDictionary[timePeriodKey][1]) <= 0)
 				{
-					if (currentTime.CompareTo(TimerDictionary[timePeriodKey][0]) >= 0 && currentTime.CompareTo(TimerDictionary[timePeriodKey][1]) <= 0)
-					{
-						period = timePeriodKey;
-						inTimeZone = true;
-						int sleepTime = TimerSleep[timePeriodKey] * 60 * 1000;
-						Console.WriteLine("{0} period - {1}mins per Tweet", period, TimerSleep[timePeriodKey]);
-						return sleepTime;
-					}
+					period = timePeriodKey;
+					inTimeZone = true;
+					int sleepTime = TimerSleep[timePeriodKey] * 60 * 1000;
+					Console.WriteLine("{0} period - {1}mins per Tweet", period, TimerSleep[timePeriodKey]);
+					return sleepTime;
 				}
 			}
 

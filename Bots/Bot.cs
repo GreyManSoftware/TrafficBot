@@ -23,8 +23,6 @@ namespace TwitterTraffic.Bots
 		public virtual void Run()
 		{
 #if !DEBUG
-			Console.WriteLine("************************************************************");
-
 			// Start up check to ensure last tweet isn't recent
 			if (TwitterConnection.CheckLastTweetNotRecent(TweetTimer, ScreenName, out SleepCounter))
 			{
@@ -35,7 +33,7 @@ namespace TwitterTraffic.Bots
 			while (true)
 			{
 #if DEBUG
-				CurrentTime = new DateTime(2018, 08, 31, 09, 00, 00);
+				CurrentTime = DateTime.Parse("2018-09-01 15:05:00");
 #else
 				CurrentTime = Utils.GetLocalTime();
 #endif

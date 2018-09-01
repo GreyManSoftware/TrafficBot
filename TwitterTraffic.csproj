@@ -90,6 +90,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\PwllypantRoundabout - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\TwitterTraffic - Web Deploy.pubxml" />
     <None Include="Properties\webjob-publish-settings.json" />
   </ItemGroup>
   <ItemGroup />
